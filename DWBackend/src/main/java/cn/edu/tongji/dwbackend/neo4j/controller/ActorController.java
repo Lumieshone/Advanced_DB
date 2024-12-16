@@ -15,7 +15,7 @@ import java.util.*;
 @RequestMapping("/actor")
 public class ActorController {
     private final Driver driver = GraphDatabase
-            .driver("neo4j://47.100.205.153:7687", AuthTokens.basic("neo4j", "dw1234"));
+            .driver("neo4j://10.176.56.210:7687", AuthTokens.basic("neo4j", "123456"));
 //    private final Driver driver;
 //    public ActorController(Driver d){driver=d;}
 

@@ -19,7 +19,7 @@ public class DirectorController {
 //            .driver("neo4j://localhost:7687", AuthTokens.basic("neo4j", "123456"));
 //    public DirectorController(Driver d){driver=d;}
     private final Driver driver = GraphDatabase
-            .driver("neo4j://47.100.205.153:7687", AuthTokens.basic("neo4j", "dw1234"));
+            .driver("neo4j://10.176.56.210:7687", AuthTokens.basic("neo4j", "123456"));
 
     @GetMapping("/dirmovie")
     public int findmovie(@RequestParam String directorName){

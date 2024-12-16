@@ -11,7 +11,7 @@ import java.util.List;
 @RequestMapping("/movie")
 public class MovieController {
     private final Driver driver = GraphDatabase
-            .driver("neo4j://47.100.205.153:7687", AuthTokens.basic("neo4j", "dw1234"));
+            .driver("neo4j://10.176.56.210:7687", AuthTokens.basic("neo4j", "123456"));
 //    private final Driver driver;
 //    public MovieController(Driver d){driver=d;}
 
@@ -78,10 +78,10 @@ public class MovieController {
                   @RequestParam String startMonth, @RequestParam String endMonth,
                   @RequestParam String startDay, @RequestParam String endDay){
         Session session=driver.session();
-        String start=startYear+"/"+startMonth+"/"+startDay+" 00:00";
-        String end=endYear+"/"+endMonth+"/"+endDay+" 00:00";
+        String start=startYear+"-"+startMonth+"-"+startDay+"T00:00:00Z";
+        String end=endYear+"-"+endMonth+"-"+endDay+"T00:00:00Z";
         long startTime = System.currentTimeMillis();
-        Result res=session.run("match(m:movie) where m.release_time >= \""+start+"\" and m.release_time <=\""+end+"\" return m");
+        Result res=session.run("match(m:movie) where m.release_time >= datetime(\""+start+"\") and m.release_time <= datetime(\""+end+"\") return m");
         // 记录结束时间
         long endTime = System.currentTimeMillis();
         return (int) (endTime-startTime);
