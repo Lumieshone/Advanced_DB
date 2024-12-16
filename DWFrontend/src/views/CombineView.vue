@@ -141,7 +141,7 @@ export default {
             if (this.type == "组合1") {
                 //mysql
                 axios
-                    .get('http://47.100.205.153:3445/mysql/combine/list/type',
+                    .get('http://10.176.56.210:3445/mysql/combine/list/type',
                         {
                             params: {
                                 type: this.type_name
@@ -152,7 +152,7 @@ export default {
                         this.t_mysql = res.data;
                         //neo4j
                         axios
-                            .get('http://47.100.205.153:3445/combine/typepair',
+                            .get('http://10.176.56.210:3445/combine/typepair',
                                 {
                                     params: {
                                         type: this.type_name
@@ -163,7 +163,7 @@ export default {
                                 this.t_neo4j = res.data;
                                 //hive 【hasn't finished】
                                 axios
-                                    .get('http://47.101.153.105:8100/spark/combine/list/type',
+                                    .get('http://10.176.56.210:8100/spark/combine/list/type',
                                         {
                                             params: {
                                                 type: this.type_name
@@ -182,7 +182,7 @@ export default {
             else if (this.type == "组合2") {
                 //mysql
                 axios
-                    .get('http://47.100.205.153:3445/mysql/combine/list/rate',
+                    .get('http://10.176.56.210:3445/mysql/combine/list/rate',
                         {
                             params: {
                                 directorName: this.dir_name,
@@ -203,7 +203,7 @@ export default {
                         this.movies = fi;
                         //neo4j
                         axios
-                            .get('http://47.100.205.153:3445/combine/findcomb1',
+                            .get('http://10.176.56.210:3445/combine/findcomb1',
                                 {
                                     params: {
                                         directorName: this.dir_name,
@@ -216,7 +216,7 @@ export default {
                                 this.t_neo4j = res.data;
 
                                 axios
-                                    .get('http://47.101.153.105:8100/spark/combine/list/rate',
+                                    .get('http://10.176.56.210:8100/spark/combine/list/rate',
                                         {
                                             params: {
                                                 directorName: this.dir_name,
@@ -240,7 +240,7 @@ export default {
             else if (this.type == "组合3") {
                 //mysql
                 axios
-                    .get('http://47.100.205.153:3445/mysql/combine/list/score',
+                    .get('http://10.176.56.210:3445/mysql/combine/list/score',
                         {
                             params: {
                                 start: this.year1,
@@ -262,7 +262,7 @@ export default {
                         this.movies = fi;
                         //neo4j
                         axios
-                            .get('http://47.100.205.153:3445/combine/findcomb2',
+                            .get('http://10.176.56.210:3445/combine/findcomb2',
                                 {
                                     params: {
                                         start: this.year1,
@@ -276,7 +276,7 @@ export default {
                                 this.t_neo4j = res.data;
 
                                 axios
-                                    .get('http://47.101.153.105:8100/spark/combine/list/score',
+                                    .get('http://10.176.56.210:8100/spark/combine/list/score',
                                         {
                                             params: {
                                                 start: this.year1,

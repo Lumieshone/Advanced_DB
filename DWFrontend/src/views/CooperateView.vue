@@ -116,7 +116,7 @@ export default {
             if (this.type1 == "导演" && this.type2 == "导演") {
                 //mysql
                 axios
-                    .get('http://47.100.205.153:3445/mysql/byColla/count/colla/dcdc',
+                    .get('http://10.176.56.210:3445/mysql/byColla/count/colla/dcdc',
                         {
                             params: {
                                 collaTime: this.times
@@ -131,7 +131,7 @@ export default {
 
                         //neo4j
                         axios
-                            .get('http://47.100.205.153:3445/director/findtwo',
+                            .get('http://10.176.56.210:3445/director/findtwo',
                                 {
                                     params: {
                                         time: this.times
@@ -144,7 +144,7 @@ export default {
 
                                 //hive 【hasn't finished】
                                 axios
-                                    .get('http://47.101.153.105:8100/spark/byColla/count/colla/dcdc',
+                                    .get('http://10.176.56.210:8100/spark/byColla/count/colla/dcdc',
                                         {
                                             params: {
                                                 collaTime: this.times
@@ -166,7 +166,7 @@ export default {
             else if ((this.type1 == "导演" && this.type2 == "演员") || (this.type1 == '演员' && this.type2 == '导演')) {
                 //mysql
                 axios
-                    .get('http://47.100.205.153:3445/mysql/byColla/count/colla/dcac',
+                    .get('http://10.176.56.210:3445/mysql/byColla/count/colla/dcac',
                         {
                             params: {
                                 collaTime: this.times
@@ -179,7 +179,7 @@ export default {
                         this.pairs = res.data.data;
                         //neo4j
                         axios
-                            .get('http://47.100.205.153:3445/actor/finddir',
+                            .get('http://10.176.56.210:3445/actor/finddir',
                                 {
                                     params: {
                                         time: this.times
@@ -191,7 +191,7 @@ export default {
 
                                 //hive 【hasn't finished】
                                 axios
-                                    .get('http://47.101.153.105:8100/spark/byColla/count/colla/dcac',
+                                    .get('http://10.176.56.210:8100/spark/byColla/count/colla/dcac',
                                         {
                                             params: {
                                                 collaTime: this.times
@@ -213,7 +213,7 @@ export default {
             else if (this.type1 == '演员' && this.type2 == '演员') {
                 //mysql
                 axios
-                    .get('http://47.100.205.153:3445/mysql/byColla/count/acac',
+                    .get('http://10.176.56.210:3445/mysql/byColla/count/acac',
                         {
                             params: {
                                 collaTime: this.times
@@ -227,7 +227,7 @@ export default {
 
                         //neo4j
                         axios
-                            .get('http://47.100.205.153:3445/actor/findtwo',
+                            .get('http://10.176.56.210:3445/actor/findtwo',
                                 {
                                     params: {
                                         time: this.times
@@ -239,7 +239,7 @@ export default {
                                 //hive 【hasn't finished】
 
                                 axios
-                                    .get('http://47.101.153.105:8100/spark/byColla/count/acac',
+                                    .get('http://10.176.56.210:8100/spark/byColla/count/acac',
                                         {
                                             params: {
                                                 collaTime: this.times
