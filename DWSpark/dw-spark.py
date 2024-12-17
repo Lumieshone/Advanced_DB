@@ -82,7 +82,7 @@ def spark_count_by_director_name_movie():
     start_time = time.time()
     res = spark.sql("""select count(*)
             from dw.movie
-            where movie.directors rlike '{}'""".format(directorName))
+            where array_contains(directors,'{}')""".format(directorName))
     consume_time = time.time() - start_time
     resDict = res.toPandas().to_dict()
     return {"res":resDict, "time":consume_time}
@@ -96,7 +96,7 @@ def spark_list_by_director_name_movie():
     start_time = time.time()
     res = spark.sql("""select title
             from dw.movie
-            where movie.directors rlike '{}'""".format(directorName))
+            where array_contains(directors,'{}')""".format(directorName))
     consume_time = time.time() - start_time
     resDict = res.toPandas().to_dict()
     return {"res":resDict, "time":consume_time}
@@ -115,7 +115,7 @@ def spark_count_by_actor_movie():
         start_time = time.time()
         res = spark.sql("""select count(*)
                 from dw.movie
-                where movie.starring_actors rlike '{}'""".format(actorName))
+                where array_contains(starring_actors, '{}')""".format(actorName))
         consume_time = time.time() - start_time
         resDict = res.toPandas().to_dict()
         return {"res":resDict, "time":consume_time}
@@ -124,8 +124,8 @@ def spark_count_by_actor_movie():
         start_time = time.time()
         res = spark.sql("""select count(*)
                 from dw.movie
-                where movie.actors rlike '{}'
-                and movie.starring_actors not rlike '{}'""".format(actorName,actorName))
+                where array_contains(actors, '{}')
+                and array_contains(starring_actors, '{}')""".format(actorName,actorName))
         consume_time = time.time() - start_time
         resDict = res.toPandas().to_dict()
         return {"res":resDict, "time":consume_time}
@@ -141,7 +141,7 @@ def spark_list_by_actor_movie():
         start_time = time.time()
         res = spark.sql("""select title
                 from dw.movie
-                where movie.starring_actors rlike '{}'""".format(actorName))
+                where array_contains(starring_actors, '{}')""".format(actorName))
         consume_time = time.time() - start_time
         resDict = res.toPandas().to_dict()
         return {"res":resDict, "time":consume_time}
@@ -151,7 +151,7 @@ def spark_list_by_actor_movie():
         res = spark.sql("""select title
                 from dw.movie
                 where movie.actors rlike '{}'
-                and movie.starring_actors not rlike '{}'""".format(actorName,actorName))
+                and array_contains(starring_actors, '{}')""".format(actorName,actorName))
         consume_time = time.time() - start_time
         resDict = res.toPandas().to_dict()
         return {"res":resDict, "time":consume_time}
@@ -264,7 +264,7 @@ def spark_combine_list_rate():
     start_time = time.time()
     res = spark.sql("""select distinct movie.title
             from dw.movie
-            where directors rlike '{}'
+            where array_contains(directors, '{}')
             and type = '{}'
             and score < {}""".format(directorName,type,rate))
     consume_time = time.time() - start_time
@@ -285,7 +285,7 @@ def spark_combine_list_score():
             from dw.movie
             where year >= {}
             and year <= {}
-            and starring_actors rlike '{}'
+            and array_contains(starring_actors, '{}')
             and score > {}""".format(start,end,name,score))
     consume_time = time.time() - start_time
     resDict = res.toPandas().to_dict()
@@ -297,7 +297,7 @@ def spark_combine_list_score():
 if __name__ == "__main__":
     spark = SparkSession\
     .builder\
-    .config("hive.metastore.uris","thrift://localhost:9083")\
+    .config("hive.metastore.uris","thrift://10.176.56.210:9083")\
     .config("spark.driver.memory",'2G')\
     .config("spark.executor.memory",'2G')\
     .enableHiveSupport()\

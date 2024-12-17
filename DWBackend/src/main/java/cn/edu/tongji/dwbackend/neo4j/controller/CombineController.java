@@ -16,7 +16,7 @@ public class CombineController {
     public Integer findpair(@RequestParam String type){
         Session session=driver.session();
         long startTime = System.currentTimeMillis();
-        Result res=session.run("match(m:movie)-[:belong]->(n:type where n.type_name=\""+type+"\") with m " + " order by m.comment_num DESC limit 1 match(a:actor)-[:star_in]->(m) return a");
+        Result res=session.run("match(m:movie)-[:belong]->(n:type) where n.type_name=\""+type+"\" with m " + " order by m.comment_num DESC limit 1 match(a:actor)-[:star_in]->(m) return a");
         // 记录结束时间
         long endTime = System.currentTimeMillis();
         return (int) (endTime-startTime);
