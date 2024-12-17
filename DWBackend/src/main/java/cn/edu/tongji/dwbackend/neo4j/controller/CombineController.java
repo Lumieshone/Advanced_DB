@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/combine")
 public class CombineController {
     private final Driver driver = GraphDatabase
-            .driver("neo4j://10.176.56.210:7687", AuthTokens.basic("neo4j", "123456"));
+            .driver("bolt://10.176.56.210:7687", AuthTokens.basic("neo4j", "123456"));
 
     @GetMapping("/typepair")
     public Integer findpair(@RequestParam String type){

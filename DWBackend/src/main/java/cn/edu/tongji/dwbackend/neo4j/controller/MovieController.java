@@ -11,7 +11,7 @@ import java.util.List;
 @RequestMapping("/movie")
 public class MovieController {
     private final Driver driver = GraphDatabase
-            .driver("neo4j://10.176.56.210:7687", AuthTokens.basic("neo4j", "123456"));
+            .driver("bolt://10.176.56.210:7687", AuthTokens.basic("neo4j", "123456"));
 //    private final Driver driver;
 //    public MovieController(Driver d){driver=d;}
 
